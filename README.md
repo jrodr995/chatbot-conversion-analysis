@@ -1,6 +1,7 @@
 Chatbot Conversion Analysis (Sanitized)
 ======================================
 
+[![CI](https://github.com/jrodr995/chatbot-conversion-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/jrodr995/chatbot-conversion-analysis/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Made with](https://img.shields.io/badge/Made%20with-Python-3776AB)
@@ -62,6 +63,12 @@ How to run
   python src/chatbot_parsing.py
   ```
 
+- Save ROC and Confusion Matrix images:
+  ```bash
+  python src/chatbot_parsing.py --save-figures
+  # images in ./figures
+  ```
+
 - Agent metric correlation tables (screenshot-ready):
   ```bash
   python src/agent_metrics_correlations.py
@@ -72,6 +79,12 @@ How to run
   python src/sierra_professional_analysis.py
   python src/sequential_professional_summary.py
   python src/correlation_professional_display.py
+  ```
+
+- Pattern significance and agent response prediction:
+  ```bash
+  python src/sequential_pattern_significance.py
+  python src/predict_agent_pattern.py
   ```
 
 Notes on data and privacy
@@ -86,6 +99,8 @@ Highlights for reviewers
 - Sound statistics (ρ, p-values) and interpretable models
 - Class imbalance handled with `class_weight='balanced'`
 - Clean CLI outputs for stakeholders
+- Chi-square significance of behavior patterns vs appointments
+- Multiclass logistic regression predicting agent response patterns
 
 License
 -------

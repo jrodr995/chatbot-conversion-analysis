@@ -1,0 +1,17 @@
+=== Multiclass Logistic Regression: Predict Agent Pattern ===
+                         precision    recall  f1-score   support
+
+BOOKING_THEN_DEFLECTION       0.00      0.00      0.00         5
+      BOOKING_THEN_INFO       0.00      0.00      0.00         3
+        COMPLEX_PATTERN       0.00      0.00      0.00         4
+              INFO_ONLY       0.00      0.00      0.00         6
+      INFO_THEN_BOOKING       0.00      0.00      0.00         1
+   INFO_THEN_DEFLECTION       0.14      0.20      0.17         5
+              NO_ACTION       0.50      0.67      0.57         3
+           PURE_BOOKING       0.00      0.00      0.00         2
+        PURE_DEFLECTION       0.00      0.00      0.00         2
+
+               accuracy                           0.10        31
+              macro avg       0.07      0.10      0.08        31
+           weighted avg       0.07      0.10      0.08        31
+

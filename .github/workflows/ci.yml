@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run scripts on synthetic data
+        env:
+          SNOWFLAKE_ENABLED: "0"
+          SAMPLE_FORCE_REGENERATE: "1"
+          SAMPLE_ROWS: "200"
+        run: |
+          python src/sierra_professional_analysis.py
+          python src/correlation_professional_display.py
+          python src/agent_metrics_correlations.py
+          python src/sequential_pattern_significance.py
+          python src/predict_agent_pattern.py
+
