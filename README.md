@@ -1,7 +1,19 @@
 Chatbot Conversion Analysis (Sanitized)
 ======================================
 
-Analyze which chat behaviors (user and agent) correlate with RFIs and appointment scheduling, with reproducible statistics and ML. This repo is sanitized: no PII, no proprietary table names, and all credentials are via environment variables. A synthetic dataset is included for full local reproducibility.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Made with](https://img.shields.io/badge/Made%20with-Python-3776AB)
+
+Analyze which chat behaviors (user and agent) correlate with RFIs and appointment scheduling, with reproducible statistics and ML.
+
+This public version is fully sanitized:
+- No PII or customer content
+- No proprietary table names or credentials
+- Environment-based configuration
+- Synthetic sample data for full local reproducibility
+
+Originally developed as part of an internship analytics project focused on improving conversion outcomes in chat experiences. This repo showcases the methods and engineering, not any proprietary content.
 
 Key features
 ------------
@@ -77,5 +89,5 @@ Highlights for reviewers
 
 License
 -------
-Choose and add your preferred license (e.g., MIT).
+MIT. See `LICENSE`.
 

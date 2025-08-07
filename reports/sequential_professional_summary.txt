@@ -1,0 +1,41 @@
+================================================================================
+SEQUENTIAL BEHAVIOR SUMMARY (Sanitized)
+================================================================================
+Dataset overview
+Rows: 800
+Available fields: TOTAL_USER_MESSAGES, USER_ENGAGEMENT_DURATION, TOTAL_AGENT_MESSAGES, outcomes, explicit intent & behavior counts
+
+Top conversations by activity score (head)
+ ID  TOTAL_USER_MESSAGES  TOTAL_AGENT_MESSAGES  USER_ENGAGEMENT_DURATION  HAS_APPT_SCHEDULED  HAS_RFI_SUBMISSION  EXPLICIT_APPT_REQUEST SEQUENCE_PATTERN  activity_score
+657                   22                    19                       412                   0                   1                      0             NONE            37.2
+ 62                   21                    18                       436                   1                   1                      0             NONE            35.4
+470                   19                    17                       377                   0                   1                      1        INFO_ONLY            32.6
+261                   18                    18                       447                   1                   1                      0             NONE            32.4
+718                   20                    15                       414                   1                   1                      0             NONE            32.0
+297                   18                    17                       386                   1                   1                      0             NONE            31.6
+ 50                   18                    17                       333                   0                   0                      1  PURE_DEFLECTION            31.6
+279                   16                    19                       275                   0                   1                      0             NONE            31.2
+ 88                   18                    15                       251                   0                   1                      0             NONE            30.0
+700                   18                    15                       343                   0                   0                      0             NONE            30.0
+
+Basic outcome rates by activity terciles
+               HAS_APPT_SCHEDULED  HAS_RFI_SUBMISSION
+activity_band                                        
+low                          17.1                47.1
+mid                          29.3                58.6
+high                         31.2                52.6
+
+Outcome rates by explicit appointment request patterns
+                         APPT_RATE
+SEQUENCE_PATTERN                  
+BOOKING_THEN_INFO             42.9
+PURE_BOOKING                  40.0
+BOOKING_THEN_DEFLECTION       29.2
+COMPLEX_PATTERN               23.8
+INFO_THEN_DEFLECTION           8.3
+NO_ACTION                      5.9
+INFO_ONLY                      3.6
+INFO_THEN_BOOKING              0.0
+PURE_DEFLECTION                0.0
+
+End of summary
