@@ -22,7 +22,9 @@ def chi_square_by_pattern(df: pd.DataFrame) -> pd.DataFrame:
     out = out.sort_values("APPT_RATE", ascending=False)
     out.loc["__GLOBAL__", "APPT_0"] = table.sum(axis=0)[0] if 0 in table.columns else 0
     out.loc["__GLOBAL__", "APPT_1"] = table.sum(axis=0)[1] if 1 in table.columns else 0
-    out.loc["__GLOBAL__", "APPT_RATE"] = out["APPT_1"].sum() / (out[["APPT_0", "APPT_1"]].sum().sum() + 1e-9)
+    out.loc["__GLOBAL__", "APPT_RATE"] = out["APPT_1"].sum() / (
+        out[["APPT_0", "APPT_1"]].sum().sum() + 1e-9
+    )
     out.attrs["chi2"] = chi2
     out.attrs["p_value"] = p
     out.attrs["dof"] = dof
@@ -37,11 +39,13 @@ def main() -> None:
         return
     print("=== PATTERN vs APPOINTMENT: Chi-square Test ===")
     print(res.to_string())
-    print(f"\nChi2: {res.attrs['chi2']:.3f}, dof: {res.attrs['dof']}, p-value: {res.attrs['p_value']:.3g}")
-    print("Legend: Lower p-value indicates significant dependence between pattern and appointment outcome.")
+    print(
+        f"\nChi2: {res.attrs['chi2']:.3f}, dof: {res.attrs['dof']}, p-value: {res.attrs['p_value']:.3g}"
+    )
+    print(
+        "Legend: Lower p-value indicates significant dependence between pattern and appointment outcome."
+    )
 
 
 if __name__ == "__main__":
     main()
-
-

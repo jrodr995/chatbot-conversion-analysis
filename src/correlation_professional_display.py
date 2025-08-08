@@ -32,15 +32,21 @@ def main() -> None:
         return tab
 
     print("\n=== APPOINTMENTS: Correlations ===")
-    print(corr_table("has_appt").to_string(index=False, formatters={"r": "{:+.3f}".format, "p": "{:.3g}".format}))
+    print(
+        corr_table("has_appt").to_string(
+            index=False, formatters={"r": "{:+.3f}".format, "p": "{:.3g}".format}
+        )
+    )
 
     print("\n=== RFI: Correlations ===")
-    print(corr_table("has_rfi").to_string(index=False, formatters={"r": "{:+.3f}".format, "p": "{:.3g}".format}))
+    print(
+        corr_table("has_rfi").to_string(
+            index=False, formatters={"r": "{:+.3f}".format, "p": "{:.3g}".format}
+        )
+    )
 
     print("\nLegend: *** p<0.001, ** p<0.01, * p<0.05")
 
 
 if __name__ == "__main__":
     main()
-
-

@@ -1,21 +1,26 @@
 from __future__ import annotations
 
 import argparse
+
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-import argparse
-from common.plot_utils import save_confusion_matrix, save_roc_curve
-from common.metrics_utils import optimize_threshold
-from sklearn.preprocessing import StandardScaler
 from scipy.stats import pointbiserialr
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 from common.data_loader import load_dataframe
+from common.metrics_utils import optimize_threshold
+from common.plot_utils import save_confusion_matrix, save_roc_curve
 
 
-def compute_and_print_models(df: pd.DataFrame, no_plots: bool = True, save_figures: bool = False, fig_dir: str = "figures") -> None:
+def compute_and_print_models(
+    df: pd.DataFrame,
+    no_plots: bool = True,
+    save_figures: bool = False,
+    fig_dir: str = "figures",
+) -> None:
     df = df.replace([np.inf, -np.inf], np.nan).dropna()
 
     df["has_appt"] = df["HAS_APPT_SCHEDULED"].astype(int)
@@ -39,7 +44,9 @@ def compute_and_print_models(df: pd.DataFrame, no_plots: bool = True, save_figur
 
     # Appointments model
     y_appt = df["has_appt"]
-    X_train_a, X_test_a, y_train_a, y_test_a = train_test_split(X_scaled, y_appt, test_size=0.2, random_state=42)
+    X_train_a, X_test_a, y_train_a, y_test_a = train_test_split(
+        X_scaled, y_appt, test_size=0.2, random_state=42
+    )
     model_appt = LogisticRegression(max_iter=1000, class_weight="balanced")
     model_appt.fit(X_train_a, y_train_a)
     y_prob_a = model_appt.predict_proba(X_test_a)[:, 1]
@@ -49,12 +56,16 @@ def compute_and_print_models(df: pd.DataFrame, no_plots: bool = True, save_figur
     print("=== Appointment Scheduling Model ===")
     print(classification_report(y_test_a, y_pred_a))
     if save_figures and not no_plots:
-        save_confusion_matrix(y_test_a, y_pred_a, "Appointments Confusion Matrix", fig_dir, "appt_cm.png")
+        save_confusion_matrix(
+            y_test_a, y_pred_a, "Appointments Confusion Matrix", fig_dir, "appt_cm.png"
+        )
         save_roc_curve(y_test_a, y_prob_a, "Appointments ROC", fig_dir, "appt_roc.png")
 
     # RFI model
     y_rfi = df["has_rfi"]
-    X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(X_scaled, y_rfi, test_size=0.2, random_state=42)
+    X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(
+        X_scaled, y_rfi, test_size=0.2, random_state=42
+    )
     model_rfi = LogisticRegression(max_iter=1000, class_weight="balanced")
     model_rfi.fit(X_train_r, y_train_r)
     y_prob_r = model_rfi.predict_proba(X_test_r)[:, 1]
@@ -102,16 +113,22 @@ def compute_and_print_models(df: pd.DataFrame, no_plots: bool = True, save_figur
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Sanitized chatbot analysis")
-    parser.add_argument("--no-plots", action="store_true", help="Skip plots to keep CLI non-interactive")
-    parser.add_argument("--save-figures", action="store_true", help="Save ROC and confusion matrix figures to figures/")
+    parser.add_argument(
+        "--no-plots", action="store_true", help="Skip plots to keep CLI non-interactive"
+    )
+    parser.add_argument(
+        "--save-figures",
+        action="store_true",
+        help="Save ROC and confusion matrix figures to figures/",
+    )
     parser.add_argument("--fig-dir", default="figures", help="Directory to save figures")
     args = parser.parse_args()
 
     df = load_dataframe()
-    compute_and_print_models(df, no_plots=args.no_plots, save_figures=args.save_figures, fig_dir=args.fig_dir)
+    compute_and_print_models(
+        df, no_plots=args.no_plots, save_figures=args.save_figures, fig_dir=args.fig_dir
+    )
 
 
 if __name__ == "__main__":
     main()
-
-

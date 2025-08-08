@@ -4,7 +4,6 @@ import os
 from typing import Optional
 
 import matplotlib.pyplot as plt
-import numpy as np
 from sklearn.metrics import ConfusionMatrixDisplay, RocCurveDisplay, roc_auc_score
 
 
@@ -32,11 +31,9 @@ def save_roc_curve(y_true, y_prob, title: str, out_dir: str, filename: str) -> O
     try:
         RocCurveDisplay.from_predictions(y_true, y_prob, ax=ax)
     except Exception:
-        ax.plot([0, 1], [0, 1], linestyle='--', color='gray')
+        ax.plot([0, 1], [0, 1], linestyle="--", color="gray")
     ax.set_title(f"{title}{' (AUC={:.3f})'.format(auc) if auc is not None else ''}")
     fig.tight_layout()
     fig.savefig(os.path.join(out_dir, filename), dpi=160)
     plt.close(fig)
     return auc
-
-

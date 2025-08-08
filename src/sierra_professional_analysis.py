@@ -3,10 +3,9 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, roc_auc_score
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import roc_auc_score
 
 from common.data_loader import load_dataframe
 from common.metrics_utils import optimize_threshold
@@ -75,7 +74,9 @@ def main() -> None:
     yA_pr = (yA_prob >= tA).astype(int)
     print(classification_report(yA_te, yA_pr))
     try:
-        print(f"Appointments ROC-AUC: {roc_auc_score(yA_te, yA_prob):.3f}; Best threshold={tA:.2f} (acc={sA:.3f})")
+        print(
+            f"Appointments ROC-AUC: {roc_auc_score(yA_te, yA_prob):.3f}; Best threshold={tA:.2f} (acc={sA:.3f})"
+        )
     except Exception:
         pass
 
@@ -90,7 +91,9 @@ def main() -> None:
     yR_pr = (yR_prob >= tR).astype(int)
     print(classification_report(yR_te, yR_pr))
     try:
-        print(f"RFI ROC-AUC: {roc_auc_score(yR_te, yR_prob):.3f}; Best threshold={tR:.2f} (acc={sR:.3f})")
+        print(
+            f"RFI ROC-AUC: {roc_auc_score(yR_te, yR_prob):.3f}; Best threshold={tR:.2f} (acc={sR:.3f})"
+        )
     except Exception:
         pass
 
@@ -99,11 +102,13 @@ def main() -> None:
     impA = np.abs(mdlA.coef_[0])
     impR = np.abs(mdlR.coef_[0])
     tbl = (
-        pd.DataFrame({
-            "feature": feature_cols,
-            "appointment_importance": impA,
-            "rfi_importance": impR,
-        })
+        pd.DataFrame(
+            {
+                "feature": feature_cols,
+                "appointment_importance": impA,
+                "rfi_importance": impR,
+            }
+        )
         .sort_values("appointment_importance", ascending=False)
         .reset_index(drop=True)
     )
@@ -114,5 +119,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

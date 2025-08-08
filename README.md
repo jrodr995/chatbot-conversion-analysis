@@ -102,6 +102,22 @@ Highlights for reviewers
 - Chi-square significance of behavior patterns vs appointments
 - Multiclass logistic regression predicting agent response patterns
 
+Results highlights (sanitized)
+------------------------------
+- Explicit appointment intent patterns show significant differences in success (chi-square p < 0.001)
+- Booking-first patterns outperform info-first patterns; deflection patterns underperform
+- Logistic Regression provides interpretable coefficients; top signals align with engagement metrics
+
+Screenshots (sanitized excerpts from original slides):
+
+![Agent vs Appointments examples](presentation/screenshots/agent_vs_appt_examples.png)
+
+![Pattern results table](presentation/screenshots/pattern_results_table.png)
+
+![Agent vs Appointments highlights](presentation/screenshots/agent_vs_appt_highlights.png)
+
+![Agent metrics overview](presentation/screenshots/agent_metrics_overview.png)
+
 License
 -------
 MIT. See `LICENSE`.

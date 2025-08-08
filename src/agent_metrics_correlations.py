@@ -31,8 +31,12 @@ def main() -> None:
     ]
     user_duration = ["USER_ENGAGEMENT_DURATION"]
 
-    print_correlation_table("AGENT METRICS vs APPOINTMENTS", df, "has_appt", agent_metrics + user_duration)
-    print_correlation_table("AGENT METRICS vs RFI SUBMISSIONS", df, "has_rfi", agent_metrics + user_duration)
+    print_correlation_table(
+        "AGENT METRICS vs APPOINTMENTS", df, "has_appt", agent_metrics + user_duration
+    )
+    print_correlation_table(
+        "AGENT METRICS vs RFI SUBMISSIONS", df, "has_rfi", agent_metrics + user_duration
+    )
 
     print("\n--- SIGNIFICANCE LEGEND ---")
     print("*** p < 0.001 (highly significant)")
@@ -43,5 +47,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

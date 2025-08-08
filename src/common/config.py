@@ -1,7 +1,7 @@
 import os
 from dataclasses import dataclass
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -21,4 +21,3 @@ class SnowflakeConfig:
 
 def get_snowflake_config() -> SnowflakeConfig:
     return SnowflakeConfig()
-

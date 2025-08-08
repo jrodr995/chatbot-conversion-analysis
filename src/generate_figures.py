@@ -18,7 +18,9 @@ def ensure_dir(path: str) -> None:
     os.makedirs(path, exist_ok=True)
 
 
-def train_lr(df: pd.DataFrame, target_col: str, feature_cols: Sequence[str]) -> tuple[np.ndarray, LogisticRegression]:
+def train_lr(
+    df: pd.DataFrame, target_col: str, feature_cols: Sequence[str]
+) -> tuple[np.ndarray, LogisticRegression]:
     X = df[list(feature_cols)]
     y = df[target_col].astype(int)
     scaler = StandardScaler()
@@ -63,40 +65,124 @@ def plot_distributions(df: pd.DataFrame, out_dir: str) -> None:
 
     # User Engagement Duration
     ax = axes[0, 0]
-    sns.histplot(df[df["HAS_APPT_SCHEDULED"] == 1]["USER_ENGAGEMENT_DURATION"], bins=40, color="green", alpha=0.7, ax=ax, label="Appt=1")
-    sns.histplot(df[df["HAS_APPT_SCHEDULED"] == 0]["USER_ENGAGEMENT_DURATION"], bins=40, color="red", alpha=0.5, ax=ax, label="Appt=0")
+    sns.histplot(
+        df[df["HAS_APPT_SCHEDULED"] == 1]["USER_ENGAGEMENT_DURATION"],
+        bins=40,
+        color="green",
+        alpha=0.7,
+        ax=ax,
+        label="Appt=1",
+    )
+    sns.histplot(
+        df[df["HAS_APPT_SCHEDULED"] == 0]["USER_ENGAGEMENT_DURATION"],
+        bins=40,
+        color="red",
+        alpha=0.5,
+        ax=ax,
+        label="Appt=0",
+    )
     ax.set_title("User Engagement Duration - Appointments")
     ax.legend()
 
     ax = axes[0, 1]
-    sns.histplot(df[df["HAS_RFI_SUBMISSION"] == 1]["USER_ENGAGEMENT_DURATION"], bins=40, color="blue", alpha=0.7, ax=ax, label="RFI=1")
-    sns.histplot(df[df["HAS_RFI_SUBMISSION"] == 0]["USER_ENGAGEMENT_DURATION"], bins=40, color="orange", alpha=0.5, ax=ax, label="RFI=0")
+    sns.histplot(
+        df[df["HAS_RFI_SUBMISSION"] == 1]["USER_ENGAGEMENT_DURATION"],
+        bins=40,
+        color="blue",
+        alpha=0.7,
+        ax=ax,
+        label="RFI=1",
+    )
+    sns.histplot(
+        df[df["HAS_RFI_SUBMISSION"] == 0]["USER_ENGAGEMENT_DURATION"],
+        bins=40,
+        color="orange",
+        alpha=0.5,
+        ax=ax,
+        label="RFI=0",
+    )
     ax.set_title("User Engagement Duration - RFI")
     ax.legend()
 
     # Agent Message Count
     ax = axes[0, 2]
-    sns.histplot(df[df["HAS_APPT_SCHEDULED"] == 1]["TOTAL_AGENT_MESSAGES"], bins=40, color="green", alpha=0.7, ax=ax, label="Appt=1")
-    sns.histplot(df[df["HAS_APPT_SCHEDULED"] == 0]["TOTAL_AGENT_MESSAGES"], bins=40, color="red", alpha=0.5, ax=ax, label="Appt=0")
+    sns.histplot(
+        df[df["HAS_APPT_SCHEDULED"] == 1]["TOTAL_AGENT_MESSAGES"],
+        bins=40,
+        color="green",
+        alpha=0.7,
+        ax=ax,
+        label="Appt=1",
+    )
+    sns.histplot(
+        df[df["HAS_APPT_SCHEDULED"] == 0]["TOTAL_AGENT_MESSAGES"],
+        bins=40,
+        color="red",
+        alpha=0.5,
+        ax=ax,
+        label="Appt=0",
+    )
     ax.set_title("Agent Message Count - Appointments")
     ax.legend()
 
     ax = axes[1, 0]
-    sns.histplot(df[df["HAS_RFI_SUBMISSION"] == 1]["TOTAL_AGENT_MESSAGES"], bins=40, color="blue", alpha=0.7, ax=ax, label="RFI=1")
-    sns.histplot(df[df["HAS_RFI_SUBMISSION"] == 0]["TOTAL_AGENT_MESSAGES"], bins=40, color="orange", alpha=0.5, ax=ax, label="RFI=0")
+    sns.histplot(
+        df[df["HAS_RFI_SUBMISSION"] == 1]["TOTAL_AGENT_MESSAGES"],
+        bins=40,
+        color="blue",
+        alpha=0.7,
+        ax=ax,
+        label="RFI=1",
+    )
+    sns.histplot(
+        df[df["HAS_RFI_SUBMISSION"] == 0]["TOTAL_AGENT_MESSAGES"],
+        bins=40,
+        color="orange",
+        alpha=0.5,
+        ax=ax,
+        label="RFI=0",
+    )
     ax.set_title("Agent Message Count - RFI")
     ax.legend()
 
     # Avg User Words per Message
     ax = axes[1, 1]
-    sns.histplot(df[df["HAS_APPT_SCHEDULED"] == 1]["AVG_USER_WORDS_PER_MSG"], bins=40, color="green", alpha=0.7, ax=ax, label="Appt=1")
-    sns.histplot(df[df["HAS_APPT_SCHEDULED"] == 0]["AVG_USER_WORDS_PER_MSG"], bins=40, color="red", alpha=0.5, ax=ax, label="Appt=0")
+    sns.histplot(
+        df[df["HAS_APPT_SCHEDULED"] == 1]["AVG_USER_WORDS_PER_MSG"],
+        bins=40,
+        color="green",
+        alpha=0.7,
+        ax=ax,
+        label="Appt=1",
+    )
+    sns.histplot(
+        df[df["HAS_APPT_SCHEDULED"] == 0]["AVG_USER_WORDS_PER_MSG"],
+        bins=40,
+        color="red",
+        alpha=0.5,
+        ax=ax,
+        label="Appt=0",
+    )
     ax.set_title("Avg User Words - Appointments")
     ax.legend()
 
     ax = axes[1, 2]
-    sns.histplot(df[df["HAS_RFI_SUBMISSION"] == 1]["AVG_USER_WORDS_PER_MSG"], bins=40, color="blue", alpha=0.7, ax=ax, label="RFI=1")
-    sns.histplot(df[df["HAS_RFI_SUBMISSION"] == 0]["AVG_USER_WORDS_PER_MSG"], bins=40, color="orange", alpha=0.5, ax=ax, label="RFI=0")
+    sns.histplot(
+        df[df["HAS_RFI_SUBMISSION"] == 1]["AVG_USER_WORDS_PER_MSG"],
+        bins=40,
+        color="blue",
+        alpha=0.7,
+        ax=ax,
+        label="RFI=1",
+    )
+    sns.histplot(
+        df[df["HAS_RFI_SUBMISSION"] == 0]["AVG_USER_WORDS_PER_MSG"],
+        bins=40,
+        color="orange",
+        alpha=0.5,
+        ax=ax,
+        label="RFI=0",
+    )
     ax.set_title("Avg User Words - RFI")
     ax.legend()
 
@@ -145,5 +231,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

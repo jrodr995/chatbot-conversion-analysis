@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import numpy as np
-import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import classification_report
 
 from common.data_loader import load_dataframe
 
@@ -35,7 +34,9 @@ def main() -> None:
     X_scaled = scaler.fit_transform(X)
 
     # Multiclass logistic regression (one-vs-rest)
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_scaled, y, test_size=0.2, random_state=42, stratify=y
+    )
     model = LogisticRegression(max_iter=2000, class_weight="balanced", multi_class="ovr")
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
@@ -45,5 +46,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-

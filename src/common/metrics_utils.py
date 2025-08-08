@@ -27,5 +27,3 @@ def optimize_threshold(y_true, y_prob, metric: str = "accuracy") -> tuple[float,
             best_s = s
             best_t = t
     return float(best_t), float(best_s)
-
-
