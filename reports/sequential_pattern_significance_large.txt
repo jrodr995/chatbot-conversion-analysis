@@ -1,0 +1,16 @@
+=== PATTERN vs APPOINTMENT: Chi-square Test ===
+                         APPT_0  APPT_1  APPT_RATE
+SEQUENCE_PATTERN                                  
+COMPLEX_PATTERN           765.0   389.0   0.337088
+BOOKING_THEN_INFO         726.0   177.0   0.196013
+INFO_THEN_BOOKING         359.0    66.0   0.155294
+PURE_BOOKING              799.0   140.0   0.149095
+BOOKING_THEN_DEFLECTION  1288.0   202.0   0.135570
+INFO_THEN_DEFLECTION     1488.0   195.0   0.115865
+INFO_ONLY                1535.0   109.0   0.066302
+NO_ACTION                1157.0    52.0   0.043011
+PURE_DEFLECTION           631.0     0.0   0.000000
+__GLOBAL__               8748.0  1330.0   0.131971
+
+Chi2: 705.916, dof: 8, p-value: 3.81e-147
+Legend: Lower p-value indicates significant dependence between pattern and appointment outcome.

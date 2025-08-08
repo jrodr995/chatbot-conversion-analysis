@@ -1,0 +1,18 @@
+
+=== AGENT METRICS vs APPOINTMENTS ===
+TOTAL_AGENT_MESSAGES                    : r=+0.156, p=2.55e-268 ***
+USER_ENGAGEMENT_DURATION                : r=+0.143, p=4.91e-228 ***
+MAX_AGENT_WORDS_IN_MSG                  : r=+0.003, p=0.439 
+AVG_AGENT_WORDS_PER_MSG                 : r=-0.003, p=0.48 
+
+=== AGENT METRICS vs RFI SUBMISSIONS ===
+USER_ENGAGEMENT_DURATION                : r=+0.057, p=4.23e-37 ***
+TOTAL_AGENT_MESSAGES                    : r=+0.046, p=6.94e-25 ***
+MAX_AGENT_WORDS_IN_MSG                  : r=+0.005, p=0.312 
+AVG_AGENT_WORDS_PER_MSG                 : r=+0.004, p=0.37 
+
+--- SIGNIFICANCE LEGEND ---
+*** p < 0.001 (highly significant)
+**  p < 0.01  (very significant)
+*   p < 0.05  (significant)
+    p >= 0.05 (not significant)

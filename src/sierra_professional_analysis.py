@@ -6,8 +6,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import roc_auc_score
 
 from common.data_loader import load_dataframe
+from common.metrics_utils import optimize_threshold
 
 
 def print_header(title: str) -> None:
@@ -68,8 +70,14 @@ def main() -> None:
     XA_tr, XA_te, yA_tr, yA_te = train_test_split(X_scaled, yA, test_size=0.2, random_state=42)
     mdlA = LogisticRegression(max_iter=1000, class_weight="balanced")
     mdlA.fit(XA_tr, yA_tr)
-    yA_pr = mdlA.predict(XA_te)
+    yA_prob = mdlA.predict_proba(XA_te)[:, 1]
+    tA, sA = optimize_threshold(yA_te, yA_prob, metric="accuracy")
+    yA_pr = (yA_prob >= tA).astype(int)
     print(classification_report(yA_te, yA_pr))
+    try:
+        print(f"Appointments ROC-AUC: {roc_auc_score(yA_te, yA_prob):.3f}; Best threshold={tA:.2f} (acc={sA:.3f})")
+    except Exception:
+        pass
 
     # RFI model
     print_section("RFI Model (Logistic Regression, class_weight='balanced')")
@@ -77,8 +85,14 @@ def main() -> None:
     XR_tr, XR_te, yR_tr, yR_te = train_test_split(X_scaled, yR, test_size=0.2, random_state=42)
     mdlR = LogisticRegression(max_iter=1000, class_weight="balanced")
     mdlR.fit(XR_tr, yR_tr)
-    yR_pr = mdlR.predict(XR_te)
+    yR_prob = mdlR.predict_proba(XR_te)[:, 1]
+    tR, sR = optimize_threshold(yR_te, yR_prob, metric="accuracy")
+    yR_pr = (yR_prob >= tR).astype(int)
     print(classification_report(yR_te, yR_pr))
+    try:
+        print(f"RFI ROC-AUC: {roc_auc_score(yR_te, yR_prob):.3f}; Best threshold={tR:.2f} (acc={sR:.3f})")
+    except Exception:
+        pass
 
     # Feature importance (absolute coefficients)
     print_section("Feature Importance (Absolute Coefficients)")

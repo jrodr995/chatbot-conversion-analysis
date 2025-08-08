@@ -1,0 +1,55 @@
+
+================================================================================
+PROFESSIONAL ANALYSIS OUTPUT
+================================================================================
+
+------------------------------------------------------------
+Dataset Overview
+------------------------------------------------------------
+Rows: 50,000
+Columns: TOTAL_USER_MESSAGES, AVG_USER_WORDS_PER_MSG, MAX_USER_WORDS_IN_MSG, USER_ENGAGEMENT_DURATION, TOTAL_AGENT_MESSAGES, AVG_AGENT_WORDS_PER_MSG, MAX_AGENT_WORDS_IN_MSG, MESSAGE_COUNT, HAS_APPT_SCHEDULED, HAS_RFI_SUBMISSION
+Appointment prevalence: 24.4%
+RFI prevalence: 50.8%
+
+------------------------------------------------------------
+Appointment Model (Logistic Regression, class_weight='balanced')
+------------------------------------------------------------
+              precision    recall  f1-score   support
+
+           0       0.81      0.60      0.69      7604
+           1       0.31      0.57      0.40      2396
+
+    accuracy                           0.59     10000
+   macro avg       0.56      0.58      0.54     10000
+weighted avg       0.69      0.59      0.62     10000
+
+
+------------------------------------------------------------
+RFI Model (Logistic Regression, class_weight='balanced')
+------------------------------------------------------------
+              precision    recall  f1-score   support
+
+           0       0.52      0.55      0.54      4952
+           1       0.54      0.51      0.52      5048
+
+    accuracy                           0.53     10000
+   macro avg       0.53      0.53      0.53     10000
+weighted avg       0.53      0.53      0.53     10000
+
+
+------------------------------------------------------------
+Feature Importance (Absolute Coefficients)
+------------------------------------------------------------
+                 feature  appointment_importance  rfi_importance
+     TOTAL_USER_MESSAGES                0.175043        0.029558
+           MESSAGE_COUNT                0.115934        0.013746
+USER_ENGAGEMENT_DURATION                0.073099        0.081402
+    TOTAL_AGENT_MESSAGES                0.048477        0.003121
+   MAX_USER_WORDS_IN_MSG                0.031812        0.026049
+ AVG_AGENT_WORDS_PER_MSG                0.025087        0.004277
+  MAX_AGENT_WORDS_IN_MSG                0.024123        0.009420
+  AVG_USER_WORDS_PER_MSG                0.023317        0.011387
+
+================================================================================
+END OF REPORT
+================================================================================

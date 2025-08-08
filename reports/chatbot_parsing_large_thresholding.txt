@@ -1,0 +1,41 @@
+=== Appointment Scheduling Model ===
+              precision    recall  f1-score   support
+
+           0       0.76      1.00      0.86      7604
+           1       0.65      0.01      0.01      2396
+
+    accuracy                           0.76     10000
+   macro avg       0.71      0.50      0.44     10000
+weighted avg       0.74      0.76      0.66     10000
+
+
+=== RFI Submission Model ===
+              precision    recall  f1-score   support
+
+           0       0.53      0.48      0.50      4952
+           1       0.53      0.58      0.55      5048
+
+    accuracy                           0.53     10000
+   macro avg       0.53      0.53      0.53     10000
+weighted avg       0.53      0.53      0.53     10000
+
+
+=== CORRELATIONS: Appointments ===
+AVG_USER_WORDS_PER_MSG vs Appointments            : r=+0.000, p=0.937
+USER_ENGAGEMENT_DURATION vs Appointments          : r=+0.143, p=4.91e-228
+MAX_USER_WORDS_IN_MSG vs Appointments             : r=-0.009, p=0.0445
+TOTAL_USER_MESSAGES vs Appointments               : r=+0.165, p=7.92e-301
+AVG_AGENT_WORDS_PER_MSG vs Appointments           : r=-0.003, p=0.48
+MAX_AGENT_WORDS_IN_MSG vs Appointments            : r=+0.003, p=0.439
+TOTAL_AGENT_MESSAGES vs Appointments              : r=+0.156, p=2.55e-268
+MESSAGE_COUNT vs Appointments                     : r=+0.166, p=6.97e-305
+
+=== CORRELATIONS: RFI ===
+AVG_USER_WORDS_PER_MSG vs RFI                     : r=+0.007, p=0.112
+USER_ENGAGEMENT_DURATION vs RFI                   : r=+0.057, p=4.23e-37
+MAX_USER_WORDS_IN_MSG vs RFI                      : r=+0.011, p=0.0161
+TOTAL_USER_MESSAGES vs RFI                        : r=+0.054, p=3.66e-33
+AVG_AGENT_WORDS_PER_MSG vs RFI                    : r=+0.004, p=0.37
+MAX_AGENT_WORDS_IN_MSG vs RFI                     : r=+0.005, p=0.312
+TOTAL_AGENT_MESSAGES vs RFI                       : r=+0.046, p=6.94e-25
+MESSAGE_COUNT vs RFI                              : r=+0.052, p=7.78e-31

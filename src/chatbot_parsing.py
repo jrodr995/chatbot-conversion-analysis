@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import argparse
 from common.plot_utils import save_confusion_matrix, save_roc_curve
+from common.metrics_utils import optimize_threshold
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import pointbiserialr
 
@@ -41,8 +42,9 @@ def compute_and_print_models(df: pd.DataFrame, no_plots: bool = True, save_figur
     X_train_a, X_test_a, y_train_a, y_test_a = train_test_split(X_scaled, y_appt, test_size=0.2, random_state=42)
     model_appt = LogisticRegression(max_iter=1000, class_weight="balanced")
     model_appt.fit(X_train_a, y_train_a)
-    y_pred_a = model_appt.predict(X_test_a)
     y_prob_a = model_appt.predict_proba(X_test_a)[:, 1]
+    th_a, _ = optimize_threshold(y_test_a, y_prob_a, metric="accuracy")
+    y_pred_a = (y_prob_a >= th_a).astype(int)
 
     print("=== Appointment Scheduling Model ===")
     print(classification_report(y_test_a, y_pred_a))
@@ -55,8 +57,9 @@ def compute_and_print_models(df: pd.DataFrame, no_plots: bool = True, save_figur
     X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(X_scaled, y_rfi, test_size=0.2, random_state=42)
     model_rfi = LogisticRegression(max_iter=1000, class_weight="balanced")
     model_rfi.fit(X_train_r, y_train_r)
-    y_pred_r = model_rfi.predict(X_test_r)
     y_prob_r = model_rfi.predict_proba(X_test_r)[:, 1]
+    th_r, _ = optimize_threshold(y_test_r, y_prob_r, metric="accuracy")
+    y_pred_r = (y_prob_r >= th_r).astype(int)
 
     print("\n=== RFI Submission Model ===")
     print(classification_report(y_test_r, y_pred_r))
